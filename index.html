@@ -1,68 +1,101 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Department of Justice | Attorney General's Office</title>
+    <meta name="description" content="Официальная система документооборота Офиса Генерального Прокурора штата Сан-Андреас.">
+    <title>DOJ | San Andreas Department of Justice</title>
+    <!-- Favicon setup - now uses favicon.png -->
+    <link rel="icon" type="image/png" href="/img/favicon.png">
+    
+    <!-- We keep Tailwind CDN for simplicity in this setup, though proper build usually imports it in CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Times+New+Roman:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        darkMode: 'class', // Enable manual dark mode toggling
+        theme: {
+          extend: {
+            fontFamily: {
+              serif: ['"Times New Roman"', 'serif'],
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              'gov-blue': '#1e293b',
+              'gov-dark': '#0f172a',
+            }
+          }
+        }
+      }
+    </script>
     <style>
         body {
-            background-color: #111;
-            color: #ddd;
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
+            font-family: 'Inter', sans-serif;
+            background: #f1f5f9;
         }
-        header {
-            background-color: #8B0000;
-            padding: 20px;
-            text-align: center;
-            font-size: 24px;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        nav {
-            background-color: #222;
-            padding: 10px;
-            text-align: center;
-        }
-        nav a {
-            color: #ddd;
-            text-decoration: none;
-            margin: 0 15px;
-            font-weight: bold;
-        }
-        main {
-            padding: 20px;
-            text-align: center;
-        }
-        footer {
-            background-color: #8B0000;
-            text-align: center;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
+        /* Custom print styles */
+        @media print {
+            body * {
+                visibility: hidden;
+            }
+            .print-area, .print-area * {
+                visibility: visible;
+            }
+            .print-area {
+                position: absolute;
+                left: 0;
+                top: 0;
+                margin: 0;
+                padding: 0;
+                width: 100% !important;
+                height: 100% !important;
+                box-shadow: none !important;
+                border: none !important;
+                background-color: white !important;
+            }
+            @page {
+                size: A4;
+                margin: 0;
+            }
+            
+            /* FORCE GRAPHICS AND LINKS */
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            a {
+                color: #2563eb !important; /* Tailwind blue-600 */
+                text-decoration: underline !important;
+                pointer-events: auto !important;
+                cursor: pointer !important;
+            }
         }
     </style>
+<script type="importmap">
+{
+  "imports": {
+    "vite": "https://esm.sh/vite@^7.3.1",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "jspdf": "https://esm.sh/jspdf@^4.1.0",
+    "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.4",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0",
+    "html2canvas": "https://esm.sh/html2canvas@^1.4.1",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "react": "https://esm.sh/react@^19.2.4",
+    "better-sqlite3": "https://esm.sh/better-sqlite3@^12.6.2",
+    "url": "https://esm.sh/url@^0.11.4",
+    "express": "https://esm.sh/express@^5.2.1",
+    "fs": "https://esm.sh/fs@^0.0.1-security",
+    "cors": "https://esm.sh/cors@^2.8.6",
+    "path": "https://esm.sh/path@^0.12.7"
+  }
+}
+</script>
 </head>
 <body>
-    <header>
-        Department of Justice | Attorney General's Office
-    </header>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#">Structure</a>
-        <a href="#">Laws & Regulations</a>
-        <a href="#">Investigations</a>
-        <a href="#">Press Releases</a>
-        <a href="#">Contact</a>
-    </nav>
-    <main>
-        <h1>LAW. POWER. INEVITABILITY.</h1>
-        <p>Welcome to the official site of the Department of Justice. We enforce the law with strength, precision, and zero tolerance for injustice.</p>
-    </main>
-    <footer>
-        &copy; 2025 Department of Justice | Attorney General's Office
-    </footer>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
 </body>
 </html>

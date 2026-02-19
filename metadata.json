@@ -1,0 +1,5 @@
+{
+  "name": "DOJ Documentation System",
+  "description": "Automated documentation system for DOJ San Andreas with official formatting, PDF export, and digital signatures.",
+  "requestFramePermissions": []
+}
